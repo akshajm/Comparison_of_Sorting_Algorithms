@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>DAA Project</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2 form-box-style" style="">
+            <form action="/solution_page">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Select sorting type</label>
+                    <select class="form-control" name="sort" id="exampleFormControlSelect1">
+                        {% for option in sorting_names %}
+                        <option>{{ option }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Number of inputs</label>
+                    <input type="text" class="form-control" name="size" placeholder="Length of array" required>
+                </div>
+                <div style="text-align: center">
+                    <button type="submit" class="btn btn-primary" style="margin-left:auto; ">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-2 ml-5 form-box-style">
+            <form action="/comparison_page_solution">
+                <div class="form-group">
+                    <label >Sort type 1</label>
+                    <select class="form-control" name="sort_a">
+                        {% for option in sorting_names %}
+                        {% if option != 'All' %}
+                        <option>{{ option }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </div><hr>
+                <div class="form-group">
+                    <label >Sort type 2</label>
+                    <select class="form-control" name="sort_b">
+                        {% for option in sorting_names %}
+                            {% if option != 'All' %}
+                                <option>{{ option }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Number of inputs</label>
+                    <input type="text" class="form-control" name="size" placeholder="Length of array" required>
+                </div>
+                <div style="text-align: center">
+                    <button type="submit" class="btn btn-primary" style="margin-left:auto; ">Compare</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-2 ml-5 form-box-style" style="">
+            <form action="custom_sort" method="POST">
+                <div class="form-group">
+                    <label>Select sorting type</label>
+                    <select class="form-control" name="sort">
+                        {% for option in sorting_names %}
+                        <option>{{ option }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Custom sorting data</label>
+                    <input type="text" class="form-control" name="array" placeholder="Enter numbers in csv form" required>
+                </div>
+                <div style="text-align: center">
+                    <button type="submit" class="btn btn-primary" style="margin-left:auto; ">Sort</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Solution</title>
+</head>
+<body>
+{% if show_data == 'True' %}
+    {% for key, value in sorted_data.items() %}
+        <h3>{{ key }}: {{ value[0] }}, Time taken: {{ value[1] }}</h3><br>
+    {% endfor %}
+{% else %}
+    <div id="myDiv"></div>
+    <script>
+        var data = {{ graph_data|tojson }};
+        var layout = {{ layout|tojson }};
+        Plotly.newPlot('myDiv', data, layout);
+    </script>
+{% endif %}
+</body>
+</html>
